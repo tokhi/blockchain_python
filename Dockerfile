@@ -8,7 +8,8 @@ WORKDIR /usr/src/app
 #RUN apt-get update && apt-get install -y libssl-dev
 RUN apk add --no-cache gcc musl-dev linux-headers tk bash
 RUN apk add --no-cache npm
-
+RUN apk add ca-certificates go go-ipfs \
+    && update-ca-certificates  
 RUN npm install -g ganache-cli
 
 COPY . ./ 
@@ -17,7 +18,5 @@ RUN pip install -r requirements.txt
 #RUN pipx install eth-brownie
 #RUN pipx ensurepath
 RUN pip install eth-brownie
-
-
 
 WORKDIR /home
